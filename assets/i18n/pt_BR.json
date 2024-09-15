@@ -1,0 +1,149 @@
+{
+    "reload": "Recarregar",
+    "close": "fechar",
+    "save": "salvar",
+    "login": {
+        "title": "Login",
+        "email": "E-mail",
+        "password": "Senha",
+        "submit": "entrar"
+    },
+    "home": {
+        "title": "Mini ERP",
+        "custumers": "clientes",
+        "products": "produtos",
+        "orders": "pedidos",
+        "suppliers": "fornecedores"
+    },
+    "custumers": {
+        "title": "Clientes",
+        "name": "nome: ",
+        "cpf": "CPF: ",
+        "rg": "RG: ",
+        "address": "endereço: ",
+        "birthday": "data nascimento: ",
+        "contact": "contato: ",
+        "email": "e-mail: ",
+        "no_custumers": "não hã clientes"
+    },
+    "create-custumer": {
+        "title": "Cadastro do Cliente",
+        "code": "código",
+        "name": "nome",
+        "cpf": "CPF",
+        "rg": "RG",
+        "address": "endereço",
+        "birthday": "data nascimento",
+        "contact": "contato",
+        "email": "e-mail"
+    },
+    "edit-custumer": {
+        "title": "Edição do Cliente",
+        "name": "nome",
+        "rg": "RG",
+        "address": "endereço",
+        "birthday": "data nascimento",
+        "contact": "contato",
+        "email": "e-mail"
+    },
+    "products": {
+        "title": "Produtos",
+        "name":"nome: ",
+        "bar-code": "codigo de barras: ",
+        "stock": "estoque: ",
+        "group": "grupo: ",
+        "mark": "marca: ",
+        "sale-value": "valor de venda: ",
+        "no_products": "não hã produtos"
+    },
+    "create-product": {
+        "title":"Cadastro do Produto",
+        "code": "código",
+        "name": "nome",
+        "bar-code": "codigo de barras",
+        "stock": "estoque",
+        "group": "grupo",
+        "mark": "marca",
+        "sale-value": "valor de venda"
+    },
+    "edit-product": {
+        "title":"Edição do Produto",
+        "name": "nome",
+        "bar-code": "codigo de barras",
+        "stock": "estoque",
+        "group": "grupo",
+        "mark": "marca",
+        "sale-value": "valor de venda"
+    },
+    "suppliers": {
+        "title": "Fornecedores",
+        "code": "codigo: ",
+        "activity": "atividade: ",
+        "enterprise": "empresa: ",
+        "contact": "contato: ",
+        "address": "endereço: ",
+        "email": "e-mail: ",
+        "no_suppliers": "não hã fornecedores"
+    },
+    "create-supplier": {
+        "title":"Cadastro do Fornecedor",
+        "code": "codigo",
+        "activity": "atividade",
+        "enterprise": "empresa",
+        "contact": "contato",
+        "address": "endereço",
+        "email": "e-mail"
+    },
+    "edit-supplier": {
+        "title":"Edição do Fornecedor",
+        "code": "codigo",
+        "activity": "atividade",
+        "enterprise": "empresa",
+        "contact": "contato",
+        "address": "endereço",
+        "email": "e-mail"
+    },
+    "orders": {
+        "title": "Pedidos",
+        "custumer": "cliente: ",
+        "dateCreation": "data criacao: ",
+        "conditionPayment": "condicao pagamento: ",
+        "formPayment": "forma pagamento: ",
+        "total": "total: ",
+        "itens-orders": {
+            "title": "itens do pedido:",
+            "product": "produto: ",
+            "amount": "quantidade: ",
+            "unitValue": "valor unitario: "
+        },
+        "no_orders": "não hã pedidos"
+    },
+    "create-order": {
+        "title": "Cadastro do Pedido",
+        "custumer": "cliente",
+        "conditionPayment": "condicao pagamento",
+        "formPayment": "forma pagamento",
+        "total": "total: ",
+        "create-itens-orders": {
+            "itens": "itens do pedido",
+            "product": "produto",
+            "amount": "quantidade",
+            "unitValue": "valor unitario",
+            "no_itens_orders": "não hã itens no pedido"
+        }
+    },
+    "edit-order": {
+        "title": "Edição do Pedido",
+        "custumer": "cliente",
+        "conditionPayment": "condicao pagamento",
+        "formPayment": "forma pagamento",
+        "total": "total: ",
+        "edit-itens-orders": {
+            "itens": "itens do pedido",
+            "product": "produto",
+            "amount": "quantidade",
+            "unitValue": "valor unitario",
+            "no_itens_orders": "não hã itens no pedido"
+        }
+    }
+}
