@@ -1,0 +1,1 @@
+export {default as CustumerReducer} from './custumer-reducer';

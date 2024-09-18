@@ -20,7 +20,7 @@ export default function LoginScreen({ navigation }) {
   const [errorMessage, setErrorMessage] = useState(null)
   
   const signIn = async () => {
-    if (email.length == 0) return
+    //if (email.length == 0) return
 
     setLoading(true)
 
@@ -29,18 +29,18 @@ export default function LoginScreen({ navigation }) {
         password: password
     }
 
-    try {
+   /*  try {
       const response = await axios.post('http://192.168.0.22:8080/login', body);
       // Verifica se a resposta foi um sucesso
       if (response.status == 200) {
         const idUsuario = response.data['idUsuario'];
         // Armazenar os dados do usuário
-        await AsyncStorage.setItem('idUsuario', JSON.stringify(idUsuario));
+        await AsyncStorage.setItem('idUsuario', JSON.stringify(idUsuario)); */
 
         setLoading(false)
         // Redireciona para a Home após o login
         navigation.navigate('Home');
-      } else {
+      /* } else {
         setLoading(false)
         setErrorMessage('Usuário não existe')
       }
@@ -48,7 +48,7 @@ export default function LoginScreen({ navigation }) {
       setLoading(false)
       console.log(error)
       Alert.alert('Erro', 'Erro ao tentar fazer login');
-    }
+    } */
   };
 
   return (

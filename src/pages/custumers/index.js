@@ -1,0 +1,1 @@
+export {default as CustumerLoad} from "./custtumer_load";
