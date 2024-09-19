@@ -1,1 +1,0 @@
-export {default as CustumersLoadAction} from './custumer_load/index';

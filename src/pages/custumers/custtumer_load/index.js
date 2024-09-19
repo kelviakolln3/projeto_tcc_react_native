@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { View, Text, ActivityIndicator, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchData } from '../../../actions/custumer/custumer_load/custumers-load-action';
+import { fetchData } from '../../../actions/custumersLoadAction';
 
 const CustumerLoad = () => {
+    const state = useSelector((state) => state);
+    //console.log(state);  // Check the entire state structure
     const dispatch = useDispatch();
-    const { loading, data, error } = useSelector((state) => state.data);
+    const { loading, list: data, error } = useSelector((state) => state.custumers || { loading: false, list: [], error: null });
 
     useEffect(() => {
         dispatch(fetchData());
@@ -26,6 +28,6 @@ const CustumerLoad = () => {
             renderItem={({ item }) => <Text>{item.name}</Text>}
         />
     );
-}
+};
 
 export default CustumerLoad;

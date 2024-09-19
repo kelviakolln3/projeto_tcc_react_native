@@ -1,6 +1,16 @@
-import { configureStore } from 'redux';
-import {reducers} from '../reducers/custumer-reducer';
+import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
+import rootReducer from '../reducers';
+import thunk from 'redux-thunk';
+import custumerReducer from '../reducers/custumerReducer'
+import custumeReducer from '../reducers/custumerReducerCopy'
   
-const store = configureStore(reducers);
+ const Store = configureStore({
+        reducer: {
+            custumers: custumerReducer,
+            custume: custumeReducer
+        },
+    },
+    applyMiddleware(thunk)
+);
 
-export default store;
+export default Store;
