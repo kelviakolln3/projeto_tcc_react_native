@@ -5,8 +5,7 @@ export const fetchData = () => async (dispatch) => {
     dispatch({ type: FETCH_DATA_REQUEST });
 
     try {
-      const response = await axios.get('http://192.168.0.22:8080/cliente');
-      console.log(response['data']);  // Check the response object
+      const response = await axios.get('http://192.168.30.126:8080/cliente');
       if (response.status == 200) {
           const data = await response['data'];
           dispatch({ type: 'FETCH_DATA_SUCCESS', payload: data });
