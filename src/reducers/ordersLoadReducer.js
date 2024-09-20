@@ -1,4 +1,4 @@
-import {FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE} from '../actions/suppliers/suppliersLoadActionTypes';
+import {FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE} from '../actions/orders/ordersLoadActionTypes';
 
 const initialState = {
     loading: false,
@@ -6,7 +6,7 @@ const initialState = {
     error: null
 };
 
-const suppliersLoadReducer = (state = initialState, action) => {
+const ordersLoadReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_DATA_REQUEST:
             return { ...state, loading: true, error: null };
@@ -19,4 +19,4 @@ const suppliersLoadReducer = (state = initialState, action) => {
     }
 };
 
-export default suppliersLoadReducer;
+export default ordersLoadReducer;

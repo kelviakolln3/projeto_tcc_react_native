@@ -33,7 +33,7 @@ export default function HomeScreen() {
       <View style={styles.card}>
         <MaterialIcons name="shopping-cart" size={22} color="teal" />
         <Text style={styles.text}>Pedidos</Text>
-        <TouchableOpacity onPress={() => navigation.navigate(route)}>
+        <TouchableOpacity onPress={() => navigation.navigate('OrdersLoad')}>
           <MaterialIcons name="chevron-right" size={32} color="teal" />
         </TouchableOpacity>
       </View>

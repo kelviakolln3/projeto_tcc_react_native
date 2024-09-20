@@ -9,7 +9,7 @@ const initialState = {
 const custumerLoadReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_DATA_REQUEST:
-            return { ...state, loading: true };
+            return { ...state, loading: true, error: null };
         case FETCH_DATA_SUCCESS:
             return { ...state, loading: false, list: action.payload };
         case FETCH_DATA_FAILURE:
