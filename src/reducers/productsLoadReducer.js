@@ -1,4 +1,4 @@
-import {FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE} from '../actions/custumers/custumersLoadActionTypes';
+import {FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE} from '../actions/products/productsLoadActionTypes';
 
 const initialState = {
     loadin: false,

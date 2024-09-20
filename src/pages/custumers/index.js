@@ -1,1 +1,1 @@
-export {default as CustumerLoad} from "./custtumer_load";
+export {default as CustumerLoad} from "./custumers_load";

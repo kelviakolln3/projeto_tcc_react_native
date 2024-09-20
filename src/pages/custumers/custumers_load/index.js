@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { fetchData } from '../../../actions/custumers/custumersLoadAction';
 
-const CustumerLoad = () => {
+const CustumersLoad = () => {
     const dispatch = useDispatch();
     const { loading, error } = useSelector((state) => state.custumers );
     let { list: data } = useSelector((state) => state.custumers);
@@ -69,4 +69,4 @@ const CustumerLoad = () => {
         />
     ); 
 };
-export default CustumerLoad;
+export default CustumersLoad;

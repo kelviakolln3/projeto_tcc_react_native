@@ -2,15 +2,19 @@ import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
 import rootReducer from '../reducers';
 import thunk from 'redux-thunk';
 import custumerReducer from '../reducers/custumerLoadReducer'
-import custumeReducer from '../reducers/custumerReducerCopy'
+import productsLoadReducer from '../reducers/productsLoadReducer'
   
  const Store = configureStore({
         reducer: {
             custumers: custumerReducer,
-            custume: custumeReducer
+            products: productsLoadReducer
         },
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+              serializableCheck: false, // Disable the serializable check
+            }),
     },
-    applyMiddleware(thunk)
+    applyMiddleware(thunk),
 );
 
 export default Store;

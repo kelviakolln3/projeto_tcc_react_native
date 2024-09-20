@@ -12,7 +12,7 @@ export default function HomeScreen() {
       <View style={styles.card}>
         <MaterialIcons name="pallet" size={22} color="teal" />
         <Text style={styles.text}>Produtos</Text>
-        <TouchableOpacity onPress={() => navigation.navigate(route)}>
+        <TouchableOpacity onPress={() => navigation.navigate('ProductsLoad')}>
           <MaterialIcons name="chevron-right" size={32} color="teal" />
         </TouchableOpacity>
       </View>
