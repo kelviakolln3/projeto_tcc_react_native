@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE } from './custumerLoadActionTypes';
+import { FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE } from './custumersLoadActionTypes';
 
 export const fetchData = () => async (dispatch) => {
     dispatch({ type: FETCH_DATA_REQUEST });

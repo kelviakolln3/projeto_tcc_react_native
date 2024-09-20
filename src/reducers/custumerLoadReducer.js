@@ -1,4 +1,4 @@
-import {FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE} from '../actions/custumerLoadActionTypes';
+import {FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE} from '../actions/custumers/custumersLoadActionTypes';
 
 const initialState = {
     loading: false,
@@ -6,7 +6,7 @@ const initialState = {
     error: null
 };
 
-const custumerReducer = (state = initialState, action) => {
+const custumerLoadReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_DATA_REQUEST:
             return { ...state, loading: true };
@@ -19,4 +19,4 @@ const custumerReducer = (state = initialState, action) => {
     }
 };
 
-export default custumerReducer;
+export default custumerLoadReducer;

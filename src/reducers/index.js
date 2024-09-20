@@ -1,5 +1,5 @@
 import { combineReducers} from '@reduxjs/toolkit'
-import custumerReducer from './custumerReducer'
+import custumerReducer from './custumerLoadReducer'
 import custumeReducer from './custumerReducerCopy'
 
 const rootReducer = combineReducers({

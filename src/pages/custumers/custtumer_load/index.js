@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { fetchData } from '../../../actions/custumersLoadAction';
+import { fetchData } from '../../../actions/custumers/custumersLoadAction';
 
 const CustumerLoad = () => {
     const dispatch = useDispatch();
