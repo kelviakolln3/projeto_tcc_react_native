@@ -26,7 +26,7 @@ export default function HomeScreen() {
       <View style={styles.card}>
         <MaterialIcons name="forklift" size={22} color="teal" />
         <Text style={styles.text}>Fornecedor</Text>
-        <TouchableOpacity onPress={() => navigation.navigate(route)}>
+        <TouchableOpacity onPress={() => navigation.navigate('SuppliersLoad')}>
           <MaterialIcons name="chevron-right" size={32} color="teal" />
         </TouchableOpacity>
       </View>

@@ -9,7 +9,7 @@ export const fetchData = () => async (dispatch) => {
       //let response = [{"codigo": 1, "contato": "(49) 999971126", "cpf": "071.044.619-57", "dataNasc": "2001-02-12T00:00:00.000+00:00", "email": "kelviakolln19@hotmail.com", "endereco": "testetestei 323", "idCliente": 52, "nome": "Kelvia Kolln", "rg": "123456789"}, {"codigo": 1, "contato": "(49) 999971126", "cpf": "071.044.619-57", "dataNasc": "2001-02-12T00:00:00.000+00:00", "email": "kelviakolln@gmail.com", "endereco": "Guapore 1114 d - Presidente Medici", "idCliente": 10, "nome": "Kelvia Kf", "rg": "123456789"}];
       if (response.status == 200) {
           const data = await response['data'];
-          dispatch({ type: 'FETCH_DATA_SUCCESS', payload: data });
+          dispatch({ type: FETCH_DATA_SUCCESS, payload: data });
       } else {
           throw new Error('Network response was not ok.');
       }

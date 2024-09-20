@@ -1,10 +1,12 @@
 import { combineReducers} from '@reduxjs/toolkit'
 import custumerReducer from './custumerLoadReducer'
-import custumeReducer from './productsLoadReducer'
+import productsReducer from './productsLoadReducer'
+import custumerLoadReducer from './custumerLoadReducer';
 
 const rootReducer = combineReducers({
-    custumer: custumerReducer, 
-    custume: custumeReducer 
+    custumerLoad: custumerReducer, 
+    productsLoad: productsReducer,
+    suppliersLoad: custumerLoadReducer
 });
 
 export default rootReducer;

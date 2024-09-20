@@ -1,13 +1,15 @@
 import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
 import rootReducer from '../reducers';
 import thunk from 'redux-thunk';
-import custumerReducer from '../reducers/custumerLoadReducer'
+import custumerLoadReducer from '../reducers/custumerLoadReducer'
 import productsLoadReducer from '../reducers/productsLoadReducer'
-  
+import suppliersLoadReducer from '../reducers/suppliersLoadReducer';
+
  const Store = configureStore({
         reducer: {
-            custumers: custumerReducer,
-            products: productsLoadReducer
+            custumers: custumerLoadReducer,
+            products: productsLoadReducer,
+            suppliers: suppliersLoadReducer
         },
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware({
