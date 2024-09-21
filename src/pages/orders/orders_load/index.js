@@ -1,14 +1,28 @@
-import React, { useEffect } from 'react';
-import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import moment from 'moment';
 import { fetchData } from '../../../actions/orders/ordersLoadAction';
+import OrderInfoDialog  from './order_info_dialog';
 
 const OrdersLoad = () => {
     const dispatch = useDispatch();
     const { loading, error } = useSelector((state) => state.orders );
     let { list: data } = useSelector((state) => state.orders);
+
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [isDialogVisible, setDialogVisible] = useState(false);
+
+    const toggleDialog = (item) => {
+      setSelectedItem(item);
+      setDialogVisible(true);
+    };
+
+    const closeDialog = () => {
+      setSelectedItem(null);
+      setDialogVisible(false);
+    };
 
     useEffect(() => {
         dispatch(fetchData());
@@ -34,11 +48,7 @@ const OrdersLoad = () => {
           </Text>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
             <TouchableOpacity
-              onPress={() =>
-                Alert.alert('Order Info', 'Show customer details here', [
-                  { text: 'OK' }
-                ])
-              }
+              onPress={() => toggleDialog(item)}
             >
               <MaterialIcons name="remove-red-eye" size={24} color="blue" />
             </TouchableOpacity>
@@ -59,11 +69,22 @@ const OrdersLoad = () => {
     );
 
     return (
-        <FlatList
+        <View style={{ flex: 1 }}>
+          <FlatList
             data={data}
             keyExtractor={(item) => item.idPedido}
             renderItem={renderItem}
-        />
+          />
+
+          {selectedItem && (
+            <OrderInfoDialog
+              isVisible={isDialogVisible}
+              onClose={closeDialog}
+              title="Informações do Pedido"
+              item={selectedItem}
+            />
+          )}
+        </View>
     ); 
 };
 export default OrdersLoad;
