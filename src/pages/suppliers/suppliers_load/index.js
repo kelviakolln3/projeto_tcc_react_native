@@ -1,13 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { fetchData } from '../../../actions/suppliers/suppliersLoadAction';
+import SupplerInfoDialog  from './supplier_info_dialog';
 
 const SuppliersLoad = () => {
     const dispatch = useDispatch();
     const { loading, error } = useSelector((state) => state.suppliers );
     let { list: data } = useSelector((state) => state.suppliers);
+
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [isDialogVisible, setDialogVisible] = useState(false);
+
+    const toggleDialog = (item) => {
+      setSelectedItem(item);
+      setDialogVisible(true);
+    };
+
+    const closeDialog = () => {
+      setSelectedItem(null);
+      setDialogVisible(false);
+    };
 
     useEffect(() => {
         dispatch(fetchData());
@@ -37,11 +51,7 @@ const SuppliersLoad = () => {
           </Text>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
             <TouchableOpacity
-              onPress={() =>
-                Alert.alert('Supplier Info', 'Show customer details here', [
-                  { text: 'OK' }
-                ])
-              }
+              onPress={() => toggleDialog(item)}
             >
               <MaterialIcons name="remove-red-eye" size={24} color="blue" />
             </TouchableOpacity>
@@ -62,11 +72,22 @@ const SuppliersLoad = () => {
     );
 
     return (
-        <FlatList
+        <View style={{ flex: 1 }}>
+          <FlatList
             data={data}
             keyExtractor={(item) => item.idFornecedor}
             renderItem={renderItem}
-        />
+          />
+
+          {selectedItem && (
+            <SupplerInfoDialog
+              isVisible={isDialogVisible}
+              onClose={closeDialog}
+              title="Informações do Fornecedor"
+              item={selectedItem}
+            />
+          )}
+        </View>
     ); 
 };
 

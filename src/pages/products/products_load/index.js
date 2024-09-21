@@ -73,7 +73,7 @@ const ProductsLoad = () => {
     );
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
           <FlatList
             data={data}
             keyExtractor={(item) => item.idProduto}
