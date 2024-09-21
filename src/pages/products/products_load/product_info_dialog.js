@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import moment from 'moment';
 import Modal from 'react-native-modal';
 
-const CustumerInfoDialog = ({ isVisible, onClose, title, item }) => {
+const ProductInfoDialog = ({ isVisible, onClose, title, item }) => {
   return (
     <Modal isVisible={isVisible} onBackdropPress={onClose} style={styles.modal}>
       <View style={styles.modalContent}>
@@ -18,24 +17,24 @@ const CustumerInfoDialog = ({ isVisible, onClose, title, item }) => {
               <Text style={{ color: '#555' }}>{item.nome}</Text>
           </Text>
           <Text>
-              <Text style={{ fontWeight: 'bold', color: '#009688' }}>CPF: </Text>
-              <Text style={{ color: '#555' }}>{item.cpf}</Text>
+              <Text style={{ fontWeight: 'bold', color: '#009688' }}>Codigo de barras: </Text>
+              <Text style={{ color: '#555' }}>{item.codigoBarras}</Text>
           </Text>
           <Text>
-              <Text style={{ fontWeight: 'bold', color: '#009688' }}>RG: </Text>
-              <Text style={{ color: '#555' }}>{item.rg}</Text>
+              <Text style={{ fontWeight: 'bold', color: '#009688' }}>Estoque: </Text>
+              <Text style={{ color: '#555' }}>{item.estoque}</Text>
           </Text>
           <Text>
-              <Text style={{ fontWeight: 'bold', color: '#009688' }}>Data Nascimento: </Text>
-              <Text style={{ color: '#555' }}>{moment(item.dataNasc).format('DD/MM/YYYY')}</Text>
+              <Text style={{ fontWeight: 'bold', color: '#009688' }}>Grupo: </Text>
+              <Text style={{ color: '#555' }}>{item.grupo}</Text>
           </Text>
           <Text>
-              <Text style={{ fontWeight: 'bold', color: '#009688' }}>Contato: </Text>
-              <Text style={{ color: '#555' }}>{item.contato}</Text>
+              <Text style={{ fontWeight: 'bold', color: '#009688' }}>Marca: </Text>
+              <Text style={{ color: '#555' }}>{item.marca}</Text>
           </Text>
           <Text>
-              <Text style={{ fontWeight: 'bold', color: '#009688' }}>E-mail: </Text>
-              <Text style={{ color: '#555' }}>{item.email}</Text>
+              <Text style={{ fontWeight: 'bold', color: '#009688' }}>Valor Venda: </Text>
+              <Text style={{ color: '#555' }}>{item.valorVenda}</Text>
           </Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={onClose}>
@@ -79,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustumerInfoDialog;
+export default ProductInfoDialog;

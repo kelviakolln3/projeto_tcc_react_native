@@ -1,13 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { fetchData } from '../../../actions/products/productsLoadAction';
+import ProductInfoDialog  from './product_info_dialog';
+import { useNavigation } from '@react-navigation/native';
 
 const ProductsLoad = () => {
     const dispatch = useDispatch();
     const { loading, error } = useSelector((state) => state.products );
     let { list: data } = useSelector((state) => state.products);
+
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [isDialogVisible, setDialogVisible] = useState(false);
+
+    const toggleDialog = (item) => {
+      setSelectedItem(item);
+      setDialogVisible(true);
+    };
+
+    const closeDialog = () => {
+      setSelectedItem(null);
+      setDialogVisible(false);
+    };
 
     useEffect(() => {
         dispatch(fetchData());
@@ -37,11 +52,7 @@ const ProductsLoad = () => {
           </Text>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
             <TouchableOpacity
-              onPress={() =>
-                Alert.alert('Product Info', 'Show customer details here', [
-                  { text: 'OK' }
-                ])
-              }
+              onPress={() => toggleDialog(item)}
             >
               <MaterialIcons name="remove-red-eye" size={24} color="blue" />
             </TouchableOpacity>
@@ -62,11 +73,22 @@ const ProductsLoad = () => {
     );
 
     return (
-        <FlatList
+        <View>
+          <FlatList
             data={data}
             keyExtractor={(item) => item.idProduto}
             renderItem={renderItem}
-        />
+          />
+
+          {selectedItem && (
+            <ProductInfoDialog
+              isVisible={isDialogVisible}
+              onClose={closeDialog}
+              title="Informações do Produto"
+              item={selectedItem}
+            />
+          )}
+        </View>
     ); 
 };
 
