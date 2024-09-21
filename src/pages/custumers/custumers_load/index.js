@@ -3,6 +3,7 @@ import { View, Text, ActivityIndicator, FlatList, TouchableOpacity } from 'react
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { fetchData } from '../../../actions/custumers/custumersLoadAction';
+import { deleteCliente } from '../../../actions/custumers/custumerDeleteAction';
 import CustumerInfoDialog  from './custumer_info_dialog';
 import { useNavigation } from '@react-navigation/native';
 
@@ -10,7 +11,9 @@ const CustumersLoad = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const { loading, error } = useSelector((state) => state.custumers );
-    let { list: data } = useSelector((state) => state.custumers);
+    let { list: data } = useSelector((state) => state.custumers );
+
+    const { loadingDelete, errorDelete } = useSelector((state) => state.custumerDelete);
 
     const [selectedItem, setSelectedItem] = useState(null);
     const [isDialogVisible, setDialogVisible] = useState(false);
@@ -23,6 +26,10 @@ const CustumersLoad = () => {
     const closeDialog = () => {
       setSelectedItem(null);
       setDialogVisible(false);
+    };
+
+    const handleDelete = (idCliente) => {
+      dispatch(deleteCliente(idCliente));
     };
 
     useEffect(() => {
@@ -65,9 +72,9 @@ const CustumersLoad = () => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => presenter.delete(item.idCliente)}
+              onPress={() => handleDelete(item.idCliente)}
             >
-              <MaterialIcons name="delete-outline" size={24} color="red" />
+              <MaterialIcons name='delete-outline' size={24} color="red" />
             </TouchableOpacity>
           </View>
         </View>
