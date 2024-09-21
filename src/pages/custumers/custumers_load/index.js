@@ -1,13 +1,29 @@
-import React, { useEffect } from 'react';
-import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { fetchData } from '../../../actions/custumers/custumersLoadAction';
+import CustumerInfoDialog  from './custumer_info_dialog';
+import { useNavigation } from '@react-navigation/native';
 
 const CustumersLoad = () => {
     const dispatch = useDispatch();
+    const navigation = useNavigation();
     const { loading, error } = useSelector((state) => state.custumers );
     let { list: data } = useSelector((state) => state.custumers);
+
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [isDialogVisible, setDialogVisible] = useState(false);
+
+    const toggleDialog = (item) => {
+      setSelectedItem(item);
+      setDialogVisible(true);
+    };
+
+    const closeDialog = () => {
+      setSelectedItem(null);
+      setDialogVisible(false);
+    };
 
     useEffect(() => {
         dispatch(fetchData());
@@ -37,23 +53,19 @@ const CustumersLoad = () => {
           </Text>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
             <TouchableOpacity
-              onPress={() =>
-                Alert.alert('Custumer Info', 'Show customer details here', [
-                  { text: 'OK' }
-                ])
-              }
+              onPress={() => toggleDialog(item)}
             >
               <MaterialIcons name="remove-red-eye" size={24} color="blue" />
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => navigation.navigate('CustumerEdit', { idCliente: viewModel.idCliente })}
+              onPress={() => navigation.navigate('CustumerEdit', { idCliente: item.idCliente })}
             >
               <MaterialIcons name="edit" size={24} color="orange" />
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => presenter.delete(viewModel.idCliente)}
+              onPress={() => presenter.delete(item.idCliente)}
             >
               <MaterialIcons name="delete-outline" size={24} color="red" />
             </TouchableOpacity>
@@ -62,11 +74,23 @@ const CustumersLoad = () => {
     );
 
     return (
-        <FlatList
+        <View style={{ flex: 1 }}>
+          <FlatList
             data={data}
             keyExtractor={(item) => item.idCliente}
             renderItem={renderItem}
-        />
+          />
+
+          {selectedItem && (
+            <CustumerInfoDialog
+              isVisible={isDialogVisible}
+              onClose={closeDialog}
+              title="Informações do Cliente"
+              item={selectedItem}
+            />
+          )}
+        </View>
     ); 
 };
+
 export default CustumersLoad;
