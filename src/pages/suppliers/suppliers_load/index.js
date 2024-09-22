@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { FAB } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { fetchData } from '../../../actions/suppliers/suppliersLoadAction';
 import { deleteFornecedor } from '../../../actions/suppliers/supplierDeleteAction';
 import SupplerInfoDialog  from './supplier_info_dialog';
+import { useNavigation } from '@react-navigation/native';
 
 const SuppliersLoad = () => {
     const dispatch = useDispatch();
+    const navigation = useNavigation();
     const { loading, error } = useSelector((state) => state.suppliers );
     let { list: data } = useSelector((state) => state.suppliers);
 
@@ -92,8 +95,25 @@ const SuppliersLoad = () => {
               item={selectedItem}
             />
           )}
+
+          <FAB
+            icon="plus"
+            color='#FFF'
+            style={styles.fab}
+            onPress={() => navigation.navigate('SupplierAdd')}
+          />
         </View>
     ); 
 };
+
+const styles = StyleSheet.create({
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#009688'
+  },
+})
 
 export default SuppliersLoad;

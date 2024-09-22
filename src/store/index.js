@@ -10,6 +10,7 @@ import productAddReducer from '../reducers/productAddReducer';
 import productDeleteReducer from '../reducers/productDeleteReducer';
 
 import suppliersLoadReducer from '../reducers/suppliersLoadReducer';
+import supplierAddReducer from '../reducers/supplierAddReducer';
 import supplierDeleteReducer from '../reducers/supplierDeleteReducer';
 
 import ordersLoadReducer from '../reducers/ordersLoadReducer';
@@ -26,7 +27,9 @@ import orderDeleteReducer from '../reducers/orderDeleteReducer';
             productDelete: productDeleteReducer,
 
             suppliers: suppliersLoadReducer,
+            supplierAdd: supplierAddReducer,
             supplierDelete: supplierDeleteReducer,
+
             orders: ordersLoadReducer,
             orderDelete: orderDeleteReducer
         },
