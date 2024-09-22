@@ -8,6 +8,7 @@ import productsLoadReducer from '../reducers/productsLoadReducer'
 import productDeleteReducer from '../reducers/productDeleteReducer';
 
 import suppliersLoadReducer from '../reducers/suppliersLoadReducer';
+import supplierDeleteReducer from '../reducers/supplierDeleteReducer';
 
 import ordersLoadReducer from '../reducers/ordersLoadReducer';
 import orderDeleteReducer from '../reducers/orderDeleteReducer';
@@ -19,6 +20,7 @@ import orderDeleteReducer from '../reducers/orderDeleteReducer';
             products: productsLoadReducer,
             productDelete: productDeleteReducer,
             suppliers: suppliersLoadReducer,
+            supplierDelete: supplierDeleteReducer,
             orders: ordersLoadReducer,
             orderDelete: orderDeleteReducer
         },

@@ -3,6 +3,7 @@ import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, Alert } from
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { fetchData } from '../../../actions/suppliers/suppliersLoadAction';
+import { deleteFornecedor } from '../../../actions/suppliers/supplierDeleteAction';
 import SupplerInfoDialog  from './supplier_info_dialog';
 
 const SuppliersLoad = () => {
@@ -21,6 +22,10 @@ const SuppliersLoad = () => {
     const closeDialog = () => {
       setSelectedItem(null);
       setDialogVisible(false);
+    };
+
+    const handleDelete = (idFornecedor) => {
+      dispatch(deleteFornecedor(idFornecedor));
     };
 
     useEffect(() => {
@@ -63,7 +68,7 @@ const SuppliersLoad = () => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => presenter.delete(viewModel.idFornecedor)}
+              onPress={() => handleDelete(item.idFornecedor)}
             >
               <MaterialIcons name="delete-outline" size={24} color="red" />
             </TouchableOpacity>
