@@ -2,6 +2,7 @@ import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 
 import custumerLoadReducer from '../reducers/custumerLoadReducer'
+import custumerAddReducer from '../reducers/custumerAddReducer';
 import custumerDeleteReducer from '../reducers/custumerDeleteReducer'
 
 import productsLoadReducer from '../reducers/productsLoadReducer'
@@ -16,6 +17,7 @@ import orderDeleteReducer from '../reducers/orderDeleteReducer';
  const Store = configureStore({
         reducer: {
             custumers: custumerLoadReducer,
+            custumerAdd: custumerAddReducer,
             custumerDelete: custumerDeleteReducer,
             products: productsLoadReducer,
             productDelete: productDeleteReducer,
