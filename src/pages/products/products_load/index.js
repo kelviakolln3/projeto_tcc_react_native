@@ -3,11 +3,13 @@ import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, Alert } from
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { fetchData } from '../../../actions/products/productsLoadAction';
+import { deleteProduto } from '../../../actions/products/productDeleteAction'
 import ProductInfoDialog  from './product_info_dialog';
 import { useNavigation } from '@react-navigation/native';
 
 const ProductsLoad = () => {
     const dispatch = useDispatch();
+    const navigation = useNavigation();
     const { loading, error } = useSelector((state) => state.products );
     let { list: data } = useSelector((state) => state.products);
 
@@ -22,6 +24,10 @@ const ProductsLoad = () => {
     const closeDialog = () => {
       setSelectedItem(null);
       setDialogVisible(false);
+    };
+
+    const handleDelete = (idProduto) => {
+      dispatch(deleteProduto(idProduto));
     };
 
     useEffect(() => {
@@ -64,7 +70,7 @@ const ProductsLoad = () => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => presenter.delete(viewModel.idProduto)}
+              onPress={() => handleDelete(item.idProduto)}
             >
               <MaterialIcons name="delete-outline" size={24} color="red" />
             </TouchableOpacity>
