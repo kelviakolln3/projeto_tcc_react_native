@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActivityIndicator, View, KeyboardAvoidingView } from 'react-native';
-import { TextInputMask } from 'react-native-masked-text';
-import { addCliente } from '../../../actions/custumers/custumerAddAction';
+import { addProduto} from '../../../actions/products/productAddAction';
 import { useNavigation } from '@react-navigation/native';
 
 import {
@@ -11,43 +10,34 @@ import {
     Error,
     Button,
     ButtonText,
-    inputStyle,
 } from './styles'
 
-const CustumerAdd = () => {
+const ProductAdd = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
-    const { loading, error, close } = useSelector((state) => state.custumerAdd );
+    const { loading, error, close } = useSelector((state) => state.productAdd );
 
     const [codigo, setCodigo] = useState(null);
     const [nome, setNome] = useState(null);
-    const [cpf, setCpf] = useState(null);
-    const [rg, setRg] = useState(null);
-    const [endereco, setEndereco] = useState(null);
-    const [dataNasc, setDataNasc] = useState(null);
-    const [contato, setContato] = useState(null);
-    const [email, setEmail] = useState(null);
+    const [codigoBarras, setCodigoBarras] = useState(null);
+    const [estoque, setEstoque] = useState(null);
+    const [grupo, setGrupo] = useState(null);
+    const [marca, setMarca] = useState(null);
+    const [valorVenda, setValorVenda] = useState(null);
 
-    function convertDate(dateStr) {
-        if(dateStr){
-            const [day, month, year] = dateStr.split('/');
-            return `${year}-${month}-${day}`;
-        }
-    }
 
     const body = {
         codigo: codigo,
         nome: nome,
-        cpf: cpf,
-        rg: rg,
-        endereco: endereco,
-        dataNasc: convertDate(dataNasc),
-        contato: contato,
-        email: email
+        codigoBarras: codigoBarras,
+        estoque: estoque,
+        grupo: grupo,
+        marca: marca,
+        valorVenda: valorVenda,
     }
 
-    const addingCliente = () => {
-        dispatch(addCliente(body));
+    const addingProduto = () => {
+        dispatch(addProduto(body));
     };
 
     useEffect(() => {
@@ -77,69 +67,51 @@ const CustumerAdd = () => {
                         value={nome}
                         onChangeText={nome => setNome(nome)}
                     />
-                    <TextInputMask
-                        type={'cpf'}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        placeholder="CPF"
-                        underlineColorAndroid="rgba(0, 0, 0, 0)"
-                        value={cpf}
-                        onChangeText={cpf => setCpf(cpf)}
-                        keyboardType="numeric"
-                        style={inputStyle}
-                    />
                     <Input
                         autoCapitalize="none"
                         autoCorrect={false}
-                        placeholder="RG"
+                        placeholder="Codigo de Barras"
                         underlineColorAndroid="rgba(0, 0, 0, 0)"
-                        value={rg}
-                        onChangeText={rg => setRg(rg)}
+                        value={codigoBarras}
+                        onChangeText={codigoBarras => setCodigoBarras(codigoBarras)}
                         keyboardType="numeric"
                     />
                     <Input
                         autoCapitalize="none"
                         autoCorrect={false}
-                        placeholder="Endereco"
+                        placeholder="Estoque"
                         underlineColorAndroid="rgba(0, 0, 0, 0)"
-                        value={endereco}
-                        onChangeText={endereco => setEndereco(endereco)}
-                    />
-                    <TextInputMask
-                        type={'datetime'}
-                        options={{format: 'DD/MM/YYYY',}}
-                        value={dataNasc}
-                        onChangeText={dataNasc => setDataNasc(dataNasc)}
-                        placeholder='Data Nascimento'
-                        style={inputStyle}
+                        value={estoque}
+                        onChangeText={estoque => setEstoque(estoque)}
                         keyboardType="numeric"
-                    />
-                    <TextInputMask
-                        type={'cel-phone'}
-                        options={{
-                          maskType: 'BRL', 
-                          withDDD: true,
-                        }}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        placeholder="Contato"
-                        underlineColorAndroid="rgba(0, 0, 0, 0)"
-                        value={contato}
-                        onChangeText={contato => setContato(contato)}
-                        keyboardType="numeric"
-                        style={inputStyle}
                     />
                     <Input
                         autoCapitalize="none"
                         autoCorrect={false}
-                        placeholder="E-mail"
+                        placeholder="Grupo"
                         underlineColorAndroid="rgba(0, 0, 0, 0)"
-                        value={email}
-                        onChangeText={email => setEmail(email)}
-                        keyboardType="email"
+                        value={grupo}
+                        onChangeText={grupo => setGrupo(grupo)}
+                    />
+                    <Input
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        placeholder="Marca"
+                        underlineColorAndroid="rgba(0, 0, 0, 0)"
+                        value={marca}
+                        onChangeText={marca => setMarca(marca)}
+                    />
+                    <Input
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        placeholder="Valor Venda"
+                        underlineColorAndroid="rgba(0, 0, 0, 0)"
+                        value={valorVenda}
+                        onChangeText={valorVenda => setValorVenda(valorVenda)}
+                        keyboardType="numeric"
                     />
 
-                    <Button onPress={() => addingCliente()}>
+                    <Button onPress={() => addingProduto()}>
                         {loading ? (<ActivityIndicator size="small" color="#FFF" />) 
                         : (<ButtonText>Salvar</ButtonText>)}
                     </Button>
@@ -150,4 +122,4 @@ const CustumerAdd = () => {
     );
 };
 
-export default CustumerAdd;
+export default ProductAdd;

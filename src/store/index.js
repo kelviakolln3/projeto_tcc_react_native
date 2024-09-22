@@ -6,6 +6,7 @@ import custumerAddReducer from '../reducers/custumerAddReducer';
 import custumerDeleteReducer from '../reducers/custumerDeleteReducer'
 
 import productsLoadReducer from '../reducers/productsLoadReducer'
+import productAddReducer from '../reducers/productAddReducer';
 import productDeleteReducer from '../reducers/productDeleteReducer';
 
 import suppliersLoadReducer from '../reducers/suppliersLoadReducer';
@@ -19,8 +20,11 @@ import orderDeleteReducer from '../reducers/orderDeleteReducer';
             custumers: custumerLoadReducer,
             custumerAdd: custumerAddReducer,
             custumerDelete: custumerDeleteReducer,
+
             products: productsLoadReducer,
+            productAdd: productAddReducer,
             productDelete: productDeleteReducer,
+
             suppliers: suppliersLoadReducer,
             supplierDelete: supplierDeleteReducer,
             orders: ordersLoadReducer,

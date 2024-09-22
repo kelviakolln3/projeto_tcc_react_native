@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, ActivityIndicator, FlatList, TouchableOpacity,  StyleSheet} from 'react-native';
+import { FAB } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { fetchData } from '../../../actions/products/productsLoadAction';
@@ -94,8 +95,25 @@ const ProductsLoad = () => {
               item={selectedItem}
             />
           )}
+
+          <FAB
+            icon="plus"
+            color='#FFF'
+            style={styles.fab}
+            onPress={() => navigation.navigate('ProductAdd')}
+          />
         </View>
     ); 
 };
+
+const styles = StyleSheet.create({
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#009688'
+  },
+})
 
 export default ProductsLoad;

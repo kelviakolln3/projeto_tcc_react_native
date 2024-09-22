@@ -11,6 +11,8 @@ import CustumerLoad from './pages/custumers/custumers_load/index';
 import CustumerAdd from './pages/custumers/custumer_add/index'
 
 import ProductsLoad from './pages/products/products_load/index'
+import ProductAdd from './pages/products/product_add';
+
 import SuppliersLoad from './pages/suppliers/suppliers_load/index';
 import OrdersLoad from './pages/orders/orders_load';
 
@@ -26,6 +28,7 @@ export default function App() {
           <Stack.Screen name="CustumerLoad" component={CustumerLoad} /> 
           <Stack.Screen name="CustumerAdd" component={CustumerAdd}/>
           <Stack.Screen name="ProductsLoad" component={ProductsLoad}/>
+          <Stack.Screen name="ProductAdd" component={ProductAdd}/>
           <Stack.Screen name="SuppliersLoad" component={SuppliersLoad}/>
           <Stack.Screen name="OrdersLoad" component={OrdersLoad}/>
         </Stack.Navigator>
