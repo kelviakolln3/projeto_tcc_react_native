@@ -13,8 +13,6 @@ const CustumersLoad = () => {
     const { loading, error } = useSelector((state) => state.custumers );
     let { list: data } = useSelector((state) => state.custumers );
 
-    const { loadingDelete, errorDelete } = useSelector((state) => state.custumerDelete);
-
     const [selectedItem, setSelectedItem] = useState(null);
     const [isDialogVisible, setDialogVisible] = useState(false);
 

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import moment from 'moment';
 import { fetchData } from '../../../actions/orders/ordersLoadAction';
+import { deletePedido } from '../../../actions/orders/orderDeleteAction';
 import OrderInfoDialog  from './order_info_dialog';
 
 const OrdersLoad = () => {
@@ -22,6 +23,10 @@ const OrdersLoad = () => {
     const closeDialog = () => {
       setSelectedItem(null);
       setDialogVisible(false);
+    };
+
+    const handleDelete = (idPedido, itemPedidoList) => {
+      dispatch(deletePedido(idPedido, itemPedidoList));
     };
 
     useEffect(() => {
@@ -54,13 +59,13 @@ const OrdersLoad = () => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => navigation.navigate('CustumerEdit', { idCliente: viewModel.idPedido })}
+              onPress={() => navigation.navigate('CustumerEdit', { idCliente: item.idPedido })}
             >
               <MaterialIcons name="edit" size={24} color="orange" />
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => presenter.delete(viewModel.idPedido)}
+              onPress={() => handleDelete(item.idPedido, item.itemPedidoBeans)}
             >
               <MaterialIcons name="delete-outline" size={24} color="red" />
             </TouchableOpacity>

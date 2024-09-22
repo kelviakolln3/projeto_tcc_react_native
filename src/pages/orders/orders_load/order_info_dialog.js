@@ -44,8 +44,8 @@ const OrderInfoDialog = ({ isVisible, onClose, title, item }) => {
               <Text style={{ color: '#555' }}>{item.formaPagamento}</Text>
           </Text>
           <Text>
-              <Text style={{ fontWeight: 'bold', color: '#009688' }}>Data Nascimento: </Text>
-              <Text style={{ color: '#555' }}>{moment(item.dataNasc).format('DD/MM/YYYY')}</Text>
+              <Text style={{ fontWeight: 'bold', color: '#009688' }}>Observacao: </Text>
+              <Text style={{ color: '#555' }}>{item.observacao}</Text>
           </Text>
           <Text>
               <Text style={{ fontWeight: 'bold', color: '#009688' }}>Total: </Text>
