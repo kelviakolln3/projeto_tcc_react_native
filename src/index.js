@@ -16,7 +16,8 @@ import ProductAdd from './pages/products/product_add/index';
 import SuppliersLoad from './pages/suppliers/suppliers_load/index';
 import SupplierAdd from './pages/suppliers/suppliers_add/index';
 
-import OrdersLoad from './pages/orders/orders_load';
+import OrdersLoad from './pages/orders/orders_load/index';
+import OrderAdd from './pages/orders/order_add/index';
 
 const Stack = createStackNavigator();
 
@@ -29,11 +30,15 @@ export default function App() {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="CustumerLoad" component={CustumerLoad} /> 
           <Stack.Screen name="CustumerAdd" component={CustumerAdd}/>
+
           <Stack.Screen name="ProductsLoad" component={ProductsLoad}/>
           <Stack.Screen name="ProductAdd" component={ProductAdd}/>
+
           <Stack.Screen name="SuppliersLoad" component={SuppliersLoad}/>
           <Stack.Screen name="SupplierAdd" component={SupplierAdd}/>
+
           <Stack.Screen name="OrdersLoad" component={OrdersLoad}/>
+          <Stack.Screen name="OrderAdd" component={OrderAdd}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

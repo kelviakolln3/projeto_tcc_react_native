@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { FAB } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import moment from 'moment';
 import { fetchData } from '../../../actions/orders/ordersLoadAction';
 import { deletePedido } from '../../../actions/orders/orderDeleteAction';
 import OrderInfoDialog  from './order_info_dialog';
+import { useNavigation } from '@react-navigation/native';
 
 const OrdersLoad = () => {
     const dispatch = useDispatch();
+    const navigation = useNavigation();
     const { loading, error } = useSelector((state) => state.orders );
     let { list: data } = useSelector((state) => state.orders);
 
@@ -89,7 +92,25 @@ const OrdersLoad = () => {
               item={selectedItem}
             />
           )}
+
+          <FAB
+            icon="plus"
+            color='#FFF'
+            style={styles.fab}
+            onPress={() => navigation.navigate('OrderAdd')}
+          />
         </View>
     ); 
 };
+
+const styles = StyleSheet.create({
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#009688'
+  },
+})
+
 export default OrdersLoad;

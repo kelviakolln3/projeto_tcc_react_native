@@ -14,6 +14,7 @@ import supplierAddReducer from '../reducers/supplierAddReducer';
 import supplierDeleteReducer from '../reducers/supplierDeleteReducer';
 
 import ordersLoadReducer from '../reducers/ordersLoadReducer';
+import orderAddReducer from '../reducers/orderAddReducer';
 import orderDeleteReducer from '../reducers/orderDeleteReducer';
 
  const Store = configureStore({
@@ -31,6 +32,7 @@ import orderDeleteReducer from '../reducers/orderDeleteReducer';
             supplierDelete: supplierDeleteReducer,
 
             orders: ordersLoadReducer,
+            orderAdd: orderAddReducer,
             orderDelete: orderDeleteReducer
         },
         middleware: (getDefaultMiddleware) =>

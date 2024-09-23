@@ -1,0 +1,4 @@
+export const ADDING_REQUEST = 'ADDING_REQUEST';
+export const ADDING_SUCCESS = 'ADDING_SUCCESS';
+export const ADDING_FAILURE = 'ADDING_FAILURE';
+export const ORDER_ITEM = 'ORDER_ITEM';
