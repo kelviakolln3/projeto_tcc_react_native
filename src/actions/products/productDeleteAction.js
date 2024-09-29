@@ -5,7 +5,7 @@ import { FETCH_DATA_SUCCESS } from './productsLoadActionTypes';
 export const deleteProduto = (idProduto) => async (dispatch, getState) => {
     dispatch({ type: DELETE_REQUEST });
     try {
-      const response = await axios.delete(`http://192.168.0.16:8080/produto/${idProduto}`);
+      const response = await axios.delete(`http://192.168.0.17:8080/produto/${idProduto}`);
       if (response.status == 200) {
         const { list: produtos } = getState().products
 

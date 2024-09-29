@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 
 import custumerLoadReducer from '../reducers/custumerLoadReducer'
 import custumerAddReducer from '../reducers/custumerAddReducer';
+import custumerEditReducer from '../reducers/custumerEditReducer';
 import custumerDeleteReducer from '../reducers/custumerDeleteReducer'
 
 import productsLoadReducer from '../reducers/productsLoadReducer'
@@ -21,6 +22,7 @@ import orderDeleteReducer from '../reducers/orderDeleteReducer';
         reducer: {
             custumers: custumerLoadReducer,
             custumerAdd: custumerAddReducer,
+            custumerEdit: custumerEditReducer,
             custumerDelete: custumerDeleteReducer,
 
             products: productsLoadReducer,

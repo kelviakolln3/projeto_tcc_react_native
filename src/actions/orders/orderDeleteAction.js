@@ -6,9 +6,9 @@ export const deletePedido = (idPedido, itemPedidoList) => async (dispatch, getSt
     dispatch({ type: DELETE_REQUEST });
     try {
         for (let index = 0; index < itemPedidoList.length; index++) {
-            await axios.delete(`http://192.168.0.16:8080/item-pedido/${itemPedidoList[index].idItemPedido}`);
+            await axios.delete(`http://192.168.0.17:8080/item-pedido/${itemPedidoList[index].idItemPedido}`);
         }
-        const response = await axios.delete(`http://192.168.0.16:8080/pedido/${idPedido}`);
+        const response = await axios.delete(`http://192.168.0.17:8080/pedido/${idPedido}`);
         if (response.status == 200) {
             const { list: pedidos } = getState().orders
 

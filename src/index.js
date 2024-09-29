@@ -8,9 +8,10 @@ import Login from './pages/login/index';
 import Home from './pages/home/index';
 
 import CustumerLoad from './pages/custumers/custumers_load/index';
-import CustumerAdd from './pages/custumers/custumer_add/index'
+import CustumerAdd from './pages/custumers/custumer_add/index';
+import CustumerEdit from './pages/custumers/custumer_edit/index';
 
-import ProductsLoad from './pages/products/products_load/index'
+import ProductsLoad from './pages/products/products_load/index';
 import ProductAdd from './pages/products/product_add/index';
 
 import SuppliersLoad from './pages/suppliers/suppliers_load/index';
@@ -28,8 +29,10 @@ export default function App() {
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Home" component={Home} />
+
           <Stack.Screen name="CustumerLoad" component={CustumerLoad} /> 
           <Stack.Screen name="CustumerAdd" component={CustumerAdd}/>
+          <Stack.Screen name="CustumerEdit" component={CustumerEdit}/>
 
           <Stack.Screen name="ProductsLoad" component={ProductsLoad}/>
           <Stack.Screen name="ProductAdd" component={ProductAdd}/>

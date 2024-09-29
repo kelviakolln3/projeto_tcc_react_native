@@ -1,6 +1,7 @@
 import { combineReducers} from '@reduxjs/toolkit'
 import custumersLoadReducer from './custumerLoadReducer'
 import custumerAddReducer from './custumerAddReducer';
+import custumerEditReducer from './custumerEditReducer';
 import custumerDeleteReducer from './custumerDeleteReducer';
 
 import productsReducer from './productsLoadReducer'
@@ -18,6 +19,7 @@ import orderDeleteReducer from './orderDeleteReducer';
 const rootReducer = combineReducers({
     custumersLoad: custumersLoadReducer, 
     custumerAdd: custumerAddReducer,
+    custumerEdit: custumerEditReducer,
     custumerDelete: custumerDeleteReducer,
 
     productsLoad: productsReducer,

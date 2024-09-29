@@ -6,7 +6,7 @@ export const addCliente = (body) => async (dispatch, getState) => {
     dispatch({ type: ADDING_REQUEST });
 
     try {
-      const response = await axios.post('http://192.168.0.16:8080/fornecedor', body);
+      const response = await axios.post('http://192.168.0.17:8080/fornecedor', body);
       if (response.status == 200) {
         const data = await response.data;
         const { list: fornecedores } = getState().suppliers

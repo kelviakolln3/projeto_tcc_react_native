@@ -5,7 +5,7 @@ import { FETCH_DATA_SUCCESS } from './custumersLoadActionTypes';
 export const deleteCliente = (idCliente) => async (dispatch, getState) => {
     dispatch({ type: DELETE_REQUEST });
     try {
-      const response = await axios.delete(`http://192.168.0.16:8080/cliente/${idCliente}`);
+      const response = await axios.delete(`http://192.168.0.17:8080/cliente/${idCliente}`);
       if (response.status == 200) {
         const { list: clientes } = getState().custumers
 
