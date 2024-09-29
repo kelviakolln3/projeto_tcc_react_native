@@ -11,6 +11,7 @@ import productDeleteReducer from './productDeleteReducer';
 
 import suppliersLoadReducer from './suppliersLoadReducer';
 import supplierAddReducer from './supplierAddReducer';
+import supplierEditReducer from './supplierEditReducer';
 import supplierDeleteReducer from './supplierDeleteReducer';
 
 import ordersLoadReducer from './ordersLoadReducer';
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
 
     suppliersLoad: suppliersLoadReducer,
     supplierAdd: supplierAddReducer,
+    supplierEdit: supplierEditReducer,
     supplierDelete: supplierDeleteReducer,
 
     ordersLoad: ordersLoadReducer,

@@ -13,6 +13,7 @@ import productDeleteReducer from '../reducers/productDeleteReducer';
 
 import suppliersLoadReducer from '../reducers/suppliersLoadReducer';
 import supplierAddReducer from '../reducers/supplierAddReducer';
+import supplierEditReducer from '../reducers/supplierEditReducer';
 import supplierDeleteReducer from '../reducers/supplierDeleteReducer';
 
 import ordersLoadReducer from '../reducers/ordersLoadReducer';
@@ -33,6 +34,7 @@ import orderDeleteReducer from '../reducers/orderDeleteReducer';
 
             suppliers: suppliersLoadReducer,
             supplierAdd: supplierAddReducer,
+            supplierEdit: supplierEditReducer,
             supplierDelete: supplierDeleteReducer,
 
             orders: ordersLoadReducer,

@@ -17,6 +17,7 @@ import ProductEdit from './pages/products/product_edit/index';
 
 import SuppliersLoad from './pages/suppliers/suppliers_load/index';
 import SupplierAdd from './pages/suppliers/suppliers_add/index';
+import SupplierEdit from './pages/suppliers/supplier_edit/index';
 
 import OrdersLoad from './pages/orders/orders_load/index';
 import OrderAdd from './pages/orders/order_add/index';
@@ -41,6 +42,7 @@ export default function App() {
 
           <Stack.Screen name="SuppliersLoad" component={SuppliersLoad}/>
           <Stack.Screen name="SupplierAdd" component={SupplierAdd}/>
+          <Stack.Screen name="SupplierEdit" component={SupplierEdit}/>
 
           <Stack.Screen name="OrdersLoad" component={OrdersLoad}/>
           <Stack.Screen name="OrderAdd" component={OrderAdd}/>
