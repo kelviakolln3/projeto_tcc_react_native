@@ -6,6 +6,7 @@ import custumerDeleteReducer from './custumerDeleteReducer';
 
 import productsReducer from './productsLoadReducer'
 import productAddReducer from './productAddReducer';
+import productEditReducer from './productEditReducer';
 import productDeleteReducer from './productDeleteReducer';
 
 import suppliersLoadReducer from './suppliersLoadReducer';
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
 
     productsLoad: productsReducer,
     productAdd: productAddReducer,
+    productEdit: productEditReducer,
     productDelete: productDeleteReducer,
 
     suppliersLoad: suppliersLoadReducer,

@@ -13,6 +13,7 @@ import CustumerEdit from './pages/custumers/custumer_edit/index';
 
 import ProductsLoad from './pages/products/products_load/index';
 import ProductAdd from './pages/products/product_add/index';
+import ProductEdit from './pages/products/product_edit/index';
 
 import SuppliersLoad from './pages/suppliers/suppliers_load/index';
 import SupplierAdd from './pages/suppliers/suppliers_add/index';
@@ -36,6 +37,7 @@ export default function App() {
 
           <Stack.Screen name="ProductsLoad" component={ProductsLoad}/>
           <Stack.Screen name="ProductAdd" component={ProductAdd}/>
+          <Stack.Screen name="ProductEdit" component={ProductEdit}/>
 
           <Stack.Screen name="SuppliersLoad" component={SuppliersLoad}/>
           <Stack.Screen name="SupplierAdd" component={SupplierAdd}/>

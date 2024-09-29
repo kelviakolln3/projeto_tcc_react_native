@@ -65,7 +65,7 @@ const ProductsLoad = () => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => navigation.navigate('ProductEdit', { idProduto: viewModel.idProduto })}
+              onPress={() => navigation.navigate('ProductEdit', { idProduto: item.idProduto })}
             >
               <MaterialIcons name="edit" size={24} color="orange" />
             </TouchableOpacity>
