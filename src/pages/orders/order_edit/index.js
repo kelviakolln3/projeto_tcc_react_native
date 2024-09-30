@@ -97,26 +97,10 @@ const OrderEdit = () => {
     };
 
     const editOrder = () => {
-        if (!condicaoPagamento || !formaPagamento) {
-            console.log('Preencha todos os campos obrigatórios');
-            return;
-        }
-
         if (order?.idPedido) {
             dispatch(editPedido(body, order.idPedido));
         }
     };
-
-    useEffect(() => {
-        if (close) {
-            navigation.goBack();
-        }
-
-        if (idPedido) {
-            dispatch(fetchData(idPedido));
-        }
-        calculeTotal();
-    }, [dispatch, close, navigation, idPedido, itensPedido]);
 
     useEffect(() => {
         if (order) {
@@ -127,6 +111,23 @@ const OrderEdit = () => {
             setObservacao(order.observacao || '');
         }
     }, [order]);
+    
+    useEffect(() => {
+        if (close) {
+            navigation.goBack();
+        }
+
+        if (idPedido) {
+            dispatch(fetchData(idPedido));
+        }
+        
+    }, [dispatch, close, navigation, idPedido]);
+
+    useEffect(() => {
+        calculeTotal();
+    }, [itemPedido]);
+
+    
 
     if (loadingFind) {
         return <ActivityIndicator size="large" color="#0000ff" />;
