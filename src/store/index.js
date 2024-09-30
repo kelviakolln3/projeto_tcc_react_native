@@ -18,6 +18,7 @@ import supplierDeleteReducer from '../reducers/supplierDeleteReducer';
 
 import ordersLoadReducer from '../reducers/ordersLoadReducer';
 import orderAddReducer from '../reducers/orderAddReducer';
+import orderEditReducer from '../reducers/orderEditReducer';
 import orderDeleteReducer from '../reducers/orderDeleteReducer';
 
  const Store = configureStore({
@@ -39,11 +40,13 @@ import orderDeleteReducer from '../reducers/orderDeleteReducer';
 
             orders: ordersLoadReducer,
             orderAdd: orderAddReducer,
+            orderEdit: orderEditReducer,
             orderDelete: orderDeleteReducer
         },
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware({
               serializableCheck: false,
+              immutableCheck: false,
             }),
     },
     applyMiddleware(thunk),

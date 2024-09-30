@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { ActivityIndicator, View, KeyboardAvoidingView, Text, FlatList, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { addPedido, addItemPedido, removeItemPedido } from '../../../actions/orders/orderAddAction';
-import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import ConditionPaymentDropdown from './condition_payment';
 import FormPaymentDropdown from './form_payment';
 import AddItemDialog from './add_item_dialog'
-import moment from 'moment';
+import { fetchData, editPedido, addItemPedido, removeItemPedido } from '../../../actions/orders/orderEditAction';
 
 import {
     Form,
@@ -19,14 +18,18 @@ import {
     LeftAlignedButton,
 } from './styles'
 
-const OrderAdd = () => {
+const OrderEdit = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
-    const { loading, error, close } = useSelector((state) => state.orderAdd );
-    let { itensPedido: itensPedido } = useSelector((state) => state.orderAdd);
-    
+    const route = useRoute();
+    const { idPedido } = route.params; 
+
+    const { loadingFind, errorFind, loadingEdit, errorEdit, close } = useSelector((state) => state.orderEdit );
+    const { order } = useSelector((state) => state.orderEdit );
+    let { itensPedido: itensPedido } = useSelector((state) => state.orderEdit);
+
     const [isDialogVisible, setDialogVisible] = useState(false);
-    
+
     const [idCliente, setIdCliente] = useState(null);
     const [condicaoPagamento, setCondicaoPagamento] = useState(null);
     const [formaPagamento, setFormaPagamento] = useState(null);
@@ -36,6 +39,24 @@ const OrderAdd = () => {
     const [idProduto, setIdProduto] = useState(null);
     const [quantidade, setQuantidade] = useState(null);
     const [valorUnitario, setValorUnitario] = useState(null);
+
+    const body = {
+        idPedido: order?.idPedido || '',
+        idCliente: idCliente || order?.idCliente || '',
+        idUsuario: order?.idUsuario || '',
+        dataCriacao: order?.dataCriacao || '',
+        condicaoPagamento: condicaoPagamento || '',
+        formaPagamento: formaPagamento || '',
+        total: total || '',
+        observacao: observacao || '',
+        itemPedidoBeans: itensPedido || []
+    };
+
+    const itemPedido = {
+        idProduto: idProduto,
+        quantidade: quantidade,
+        valorUnitario: valorUnitario
+    }
 
     const toggleDialog = () => {
         setDialogVisible(true);
@@ -48,7 +69,7 @@ const OrderAdd = () => {
     const handleFormPayment = (newValue) => {
         setFormaPagamento(newValue);
     };
-    
+
     const calculeTotal = () => {
         let new_total = 0;
         for (let index = 0; index < itensPedido.length; index++) {
@@ -57,47 +78,63 @@ const OrderAdd = () => {
         setTotal(new_total)
     }
 
-    const body = {
-        idCliente: idCliente,
-        idUsuario: 1,
-        dataCriacao:  moment().utcOffset('+03:00').format('YYYY-MM-DD'),
-        condicaoPagamento: condicaoPagamento,
-        formaPagamento: formaPagamento,
-        total: total,
-        observacao: observacao,
-        itemPedidoBeans: itensPedido
-    }
-
-    const itemPedido = {
-        idProduto: idProduto,
-        quantidade: quantidade,
-        valorUnitario: valorUnitario
-    }
-
-    const addingPedido = () => {
-        dispatch(addPedido(body));
-    };
-
-    const addingItemPedido = () => {
+    const addItem = () => {
+        if (!idProduto || !quantidade || !valorUnitario) {
+            console.log("Preencha todos os campos do item.");
+            return;
+        }
         dispatch(addItemPedido(itemPedido));
         setDialogVisible(false);
         setIdProduto(null);
         setQuantidade(null);
         setValorUnitario(null);
-        calculeTotal()
-    }
+        calculeTotal();
+    };
 
-    const removingItemPedido = () => {
-        dispatch(removeItemPedido(itemPedido));
-        calculeTotal()
-    }
+    const removingItemPedido = (item) => {
+        dispatch(removeItemPedido(item));
+        calculeTotal();
+    };
+
+    const editOrder = () => {
+        if (!condicaoPagamento || !formaPagamento) {
+            console.log('Preencha todos os campos obrigatórios');
+            return;
+        }
+
+        if (order?.idPedido) {
+            dispatch(editPedido(body, order.idPedido));
+        }
+    };
 
     useEffect(() => {
         if (close) {
             navigation.goBack();
         }
+
+        if (idPedido) {
+            dispatch(fetchData(idPedido));
+        }
         calculeTotal();
-    }, [close, navigation, itemPedido]);
+    }, [dispatch, close, navigation, idPedido, itensPedido]);
+
+    useEffect(() => {
+        if (order) {
+            setIdCliente(order.idCliente?.toString() || '');
+            setCondicaoPagamento(order.condicaoPagamento);
+            setFormaPagamento(order.formaPagamento);
+            setTotal(order.total?.toString() || 0.00);
+            setObservacao(order.observacao || '');
+        }
+    }, [order]);
+
+    if (loadingFind) {
+        return <ActivityIndicator size="large" color="#0000ff" />;
+    }
+
+    if (errorFind) {
+        return <Text>Error: {errorFind}</Text>;
+    }
 
     const renderItem = ({ item }) => (
         <View style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
@@ -135,8 +172,8 @@ const OrderAdd = () => {
                         keyboardType="numeric"
                     />
                     <View style={Row}>
-                        <ConditionPaymentDropdown onValueChange={handleConditionPayment} />
-                        <FormPaymentDropdown onValueChange={handleFormPayment} />
+                        <ConditionPaymentDropdown initialValue={condicaoPagamento} onValueChange={handleConditionPayment} />
+                        <FormPaymentDropdown initialValue={formaPagamento} onValueChange={handleFormPayment} />
                     </View>
                     <Input
                         autoCapitalize="none"
@@ -166,17 +203,17 @@ const OrderAdd = () => {
                         </TouchableOpacity>
                     </View>
 
-                    <Button onPress={() => addingPedido()}>
-                        {loading ? (<ActivityIndicator size="small" color="#FFF" />) 
-                        : (<ButtonText>Salvar</ButtonText>)}
+                    <Button onPress={editOrder}>
+                        {loadingEdit ? (<ActivityIndicator size="small" color="#FFF" />) 
+                        : (<ButtonText>Editar</ButtonText>)}
                     </Button>
-                    {!!error && <Error>{error}</Error>}
+                    {!!errorEdit && <Error>{errorEdit}</Error>}
                 </Form>
 
                 {setDialogVisible && (
                     <AddItemDialog
                     isVisible={isDialogVisible}
-                    onClose={addingItemPedido}
+                    onClose={addItem}
                     title="Adicionar Item"
                     idProduto={idProduto}
                     setIdProduto={setIdProduto}
@@ -191,4 +228,4 @@ const OrderAdd = () => {
     );
 };
 
-export default OrderAdd;
+export default OrderEdit;

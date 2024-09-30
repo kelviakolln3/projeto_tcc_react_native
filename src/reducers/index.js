@@ -16,6 +16,7 @@ import supplierDeleteReducer from './supplierDeleteReducer';
 
 import ordersLoadReducer from './ordersLoadReducer';
 import orderAddReducer from './orderAddReducer';
+import orderEditReducer from './orderEditReducer';
 import orderDeleteReducer from './orderDeleteReducer';
 
 const rootReducer = combineReducers({
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
 
     ordersLoad: ordersLoadReducer,
     orderAdd: orderAddReducer,
+    orderEdit: orderEditReducer,
     orderDelete: orderDeleteReducer
 });
 

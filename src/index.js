@@ -21,6 +21,7 @@ import SupplierEdit from './pages/suppliers/supplier_edit/index';
 
 import OrdersLoad from './pages/orders/orders_load/index';
 import OrderAdd from './pages/orders/order_add/index';
+import OrderEdit from './pages/orders/order_edit/index';
 
 const Stack = createStackNavigator();
 
@@ -46,6 +47,7 @@ export default function App() {
 
           <Stack.Screen name="OrdersLoad" component={OrdersLoad}/>
           <Stack.Screen name="OrderAdd" component={OrderAdd}/>
+          <Stack.Screen name="OrderEdit" component={OrderEdit}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

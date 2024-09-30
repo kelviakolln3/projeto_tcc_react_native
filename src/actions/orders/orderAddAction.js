@@ -4,7 +4,6 @@ import { FETCH_DATA_SUCCESS } from './ordersLoadActionTypes'
 
 export const addPedido = (body) => async (dispatch, getState) => {
     dispatch({ type: ADDING_REQUEST });
-    console.log(body)
 
     try {
       const response = await axios.post('http://192.168.0.17:8080/pedido/inserir-pedido', body);

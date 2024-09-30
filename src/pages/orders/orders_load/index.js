@@ -62,7 +62,7 @@ const OrdersLoad = () => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => navigation.navigate('CustumerEdit', { idCliente: item.idPedido })}
+              onPress={() => navigation.navigate('OrderEdit', { idPedido: item.idPedido })}
             >
               <MaterialIcons name="edit" size={24} color="orange" />
             </TouchableOpacity>
