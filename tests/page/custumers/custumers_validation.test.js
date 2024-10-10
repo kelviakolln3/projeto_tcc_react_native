@@ -9,7 +9,7 @@ import {
 } from '../../../src/validation/validators/validators';
 
 describe('Customer Create Validations', () => { //Tempo de montagem 20 min e 46 seg 
-  it('should return the correct validations in customer create', () => {
+  it('Should return the correct validations in custumers create', () => {
     const validations = makeCustumerValidations();
 
     expect(validations).toEqual([
