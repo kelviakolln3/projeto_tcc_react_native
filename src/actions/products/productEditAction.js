@@ -5,7 +5,7 @@ import { FETCH_DATA_SUCCESS } from './productsLoadActionTypes'
 export const fetchData = (idProdudo) => async (dispatch) => {
     dispatch({ type: FIND_REQUEST });
     try {
-      const response = await axios.get(`http://192.168.0.17:8080/produto/${idProdudo}`);
+      const response = await axios.get(`http://192.168.0.15:8080/produto/${idProdudo}`);
       if (response.status == 200) {
           const data = await response['data'];
           dispatch({ type: FIND_SUCCESS, payload: data });
@@ -21,7 +21,7 @@ export const editProduto = (body, idProduto) => async (dispatch, getState) => {
     dispatch({ type: EDIT_REQUEST });
     
     try {
-        const response = await axios.put(`http://192.168.0.17:8080/produto/${idProduto}`, body);
+        const response = await axios.put(`http://192.168.0.15:8080/produto/${idProduto}`, body);
         if (response.status == 200) {
             const { list: produtos } = getState().products
             const updatedProdutos = produtos.map(produto => produto.idProduto === idProduto ? response.data : produto);

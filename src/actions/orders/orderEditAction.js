@@ -5,7 +5,7 @@ import { FETCH_DATA_SUCCESS } from './ordersLoadActionTypes'
 export const fetchData = (idPedido) => async (dispatch) => {
     dispatch({ type: FIND_REQUEST });
     try {
-      const response = await axios.get(`http://192.168.0.17:8080/pedido/get-all-bean/${idPedido}`);
+      const response = await axios.get(`http://192.168.0.15:8080/pedido/get-all-bean/${idPedido}`);
       if (response.status == 200) {
           const data = await response['data'];
           dispatch({ type: FIND_SUCCESS, payload: data });
@@ -21,7 +21,7 @@ export const editPedido = (body, idPedido) => async (dispatch, getState) => {
     dispatch({ type: EDIT_REQUEST });
 
     try {
-      const response = await axios.post('http://192.168.0.17:8080/pedido/inserir-pedido', body);
+      const response = await axios.post('http://192.168.0.15:8080/pedido/inserir-pedido', body);
       if (response.status == 200) {
         const data = await response.data;
         const { list: pedidos } = getState().orders
@@ -46,7 +46,7 @@ export const addItemPedido = (item) => async (dispatch, getState) => {
 export const removeItemPedido = (item) => async (dispatch, getState) => {
     if (item.idItemPedido != null) {
         try {
-            await axios.delete(`http://192.168.0.17:8080/item-pedido/${item.idItemPedido}`);
+            await axios.delete(`http://192.168.0.15:8080/item-pedido/${item.idItemPedido}`);
         } catch (error) {
             console.error("Erro ao remover item do pedido:", error);
         }

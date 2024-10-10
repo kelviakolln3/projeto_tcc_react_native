@@ -6,7 +6,7 @@ export const addPedido = (body) => async (dispatch, getState) => {
     dispatch({ type: ADDING_REQUEST });
 
     try {
-      const response = await axios.post('http://192.168.0.17:8080/pedido/inserir-pedido', body);
+      const response = await axios.post('http://192.168.0.15:8080/pedido/inserir-pedido', body);
       if (response.status == 200) {
         const data = await response.data;
         const { list: pedidos } = getState().orders
