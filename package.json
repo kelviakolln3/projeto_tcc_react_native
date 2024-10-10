@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.0.3",
     "@react-native-async-storage/async-storage": "^2.0.0",
     "@react-native-vector-icons/material-icons": "^0.0.1-alpha.25",
     "@react-navigation/native": "^6.1.18",
@@ -50,9 +51,11 @@
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
     "eslint": "^8.19.0",
+    "faker": "^6.6.6",
     "jest": "^29.7.0",
     "prettier": "2.8.8",
     "react-test-renderer": "18.3.1",
+    "redux-mock-store": "^1.5.4",
     "typescript": "5.0.4"
   },
   "engines": {
