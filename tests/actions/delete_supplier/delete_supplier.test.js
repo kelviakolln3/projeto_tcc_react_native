@@ -1,23 +1,23 @@
 import configureMockStore from 'redux-mock-store';
 import { thunk } from 'redux-thunk';
 import axios from 'axios';
-import { deleteProduto } from '../../../src/actions/products/productDeleteAction';
-import { DELETE_REQUEST, DELETE_FAILURE } from '../../../src/actions/products/productDeleteActionTypes';
-import { FETCH_DATA_SUCCESS } from '../../../src/actions/products/productsLoadActionTypes';
+import { deleteFornecedor } from '../../../src/actions/suppliers/supplierDeleteAction';
+import { DELETE_REQUEST, DELETE_FAILURE } from '../../../src/actions/suppliers/supplierDeleteActionTypes';
+import { FETCH_DATA_SUCCESS } from '../../../src/actions/suppliers/suppliersLoadActionTypes';
 
 const mockStore = configureMockStore([thunk]);
 
 jest.mock('axios');
 
-describe('deleteProduto actions', () => { //Tempo de montagem 05 min e 40 seg 
+describe('deleteFornecedor actions', () => { //Tempo de montagem 03 min e 36 seg 
     let store;
 
     beforeEach(() => {
         store = mockStore({
-            products: {
+            suppliers: {
                 list: [
-                    { idProduto: 1, nome: 'Caneta' },
-                    { idProduto: 2, nome: 'Lapis' }
+                    { idFornecedor: 1, empresa: 'Apple' },
+                    { idFornecedor: 2, empresa: 'Samsung' }
                 ]
             }
         });
@@ -27,31 +27,27 @@ describe('deleteProduto actions', () => { //Tempo de montagem 05 min e 40 seg
         jest.clearAllMocks(); // Limpa os mocks após cada teste
     });
 
-    it('should dispatch DELETE_REQUEST and FETCH_DATA_SUCCESS when deleting a product is successful', async () => {
-        const idProdutoToDelete = 1;
+    it('should dispatch DELETE_REQUEST and FETCH_DATA_SUCCESS when deleting a supplier is successful', async () => {
+        const idFornecedorToDelete = 1;
 
         axios.delete.mockResolvedValueOnce({ status: 200 });
-
-        await store.dispatch(deleteProduto(idProdutoToDelete));
+        await store.dispatch(deleteFornecedor(idFornecedorToDelete));
 
         const actions = store.getActions();
-
         expect(actions[0]).toEqual({ type: DELETE_REQUEST });
         expect(actions[1]).toEqual({
             type: FETCH_DATA_SUCCESS,
-            payload: [{ idProduto: 2, nome: 'Lapis' }]
+            payload: [{ idFornecedor: 2, empresa: 'Samsung' }]
         });
     });
 
-    it('should dispatch DELETE_REQUEST and DELETE_FAILURE when deleting a product fails', async () => {
+    it('should dispatch DELETE_REQUEST and DELETE_FAILURE when deleting a supplier fails', async () => {
         const idClienteToDelete = 1;
         const errorMessage = 'Network error';
 
-        // Simula um erro na requisição
         axios.delete.mockRejectedValueOnce(new Error(errorMessage));
 
-        // Despacha a ação deleteProduto
-        await store.dispatch(deleteProduto(idClienteToDelete));
+        await store.dispatch(deleteFornecedor(idClienteToDelete));
 
         const actions = store.getActions();
         expect(actions[0]).toEqual({ type: DELETE_REQUEST });
