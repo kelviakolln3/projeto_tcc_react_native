@@ -1,15 +1,15 @@
 import configureMockStore from 'redux-mock-store';
 import { thunk } from 'redux-thunk';
 import axios from 'axios';
-import { fetchData } from '../../../src/actions/custumers/custumersLoadAction'; 
-import { FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE } from '../../../src/actions/custumers/custumersLoadActionTypes';
+import { fetchData } from '../../../src/actions/products/productsLoadAction'; 
+import { FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE } from '../../../src/actions/products/productsLoadActionTypes';
 import { faker } from '@faker-js/faker';
 
 const mockStore = configureMockStore([thunk]);
 
 jest.mock('axios');
 
-describe('fetchData actions', () => { //Tempo de montagem 1 h 22 min e 57 seg 
+describe('fetchData actions', () => { //Tempo de montagem 04 min e 35 seg 
   let store;
 
   beforeEach(() => {
@@ -23,30 +23,28 @@ describe('fetchData actions', () => { //Tempo de montagem 1 h 22 min e 57 seg
   it('should dispatch FETCH_DATA_REQUEST and FETCH_DATA_SUCCESS when fetching data is successful', async () => {
     const mockData = [
         {
-            idCliente: faker.number.int(),
+            idProduto: faker.number.int(),
             codigo: faker.number.int(),
-            nome: faker.person.fullName(),
-            cpf: faker.string.alpha(14),
-            rg: faker.number.int({max: 1000}).toString(),
-            endereco: faker.location.streetAddress(),
-            dataNasc: faker.date.past().toISOString(),
-            contato: faker.phone.number(),
-            email: faker.internet.email(),
+            nome: faker.string.alpha(25),
+            codigoBarras: faker.number.int({max: 14}).toString(),
+            estoque: faker.number.float(),
+            grupo: faker.string.alpha(20),
+            marca: faker.string.alpha(20),
+            valorVenda: faker.number.float(),
         },
         {
-            idCliente: faker.number.int(),
+            idProduto: faker.number.int(),
             codigo: faker.number.int(),
-            nome: faker.person.fullName(),
-            cpf: faker.string.alpha(14),
-            rg: faker.number.int({max: 1000}).toString(),
-            endereco: faker.location.streetAddress(),
-            dataNasc: faker.date.past().toISOString(),
-            contato: faker.phone.number(),
-            email: faker.internet.email(),
+            nome: faker.string.alpha(25),
+            codigoBarras: faker.number.int({max: 14}).toString(),
+            estoque: faker.number.float(),
+            grupo: faker.string.alpha(20),
+            marca: faker.string.alpha(20),
+            valorVenda: faker.number.float(),
         },
     ];
 
-    const fakeUrl = 'http://fakeurl.com/api/clientes';
+    const fakeUrl = 'http://fakeurl.com/api/produto';
     
     // Simula uma resposta bem-sucedida
     axios.get.mockResolvedValueOnce({ status: 200, data: mockData });
