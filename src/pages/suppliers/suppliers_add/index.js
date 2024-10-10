@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActivityIndicator, View, KeyboardAvoidingView } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
-import { addCliente } from '../../../actions/custumers/custumerAddAction';
+import { addFornecedor } from '../../../actions/suppliers/supplierAddAction';
 import { useNavigation } from '@react-navigation/native';
 
 import {
@@ -35,8 +35,8 @@ const SupplierAdd = () => {
         email: email
     }
 
-    const addingProduto = () => {
-        dispatch(addCliente(body));
+    const addingFornecedor = () => {
+        dispatch(addFornecedor(body));
     };
 
     useEffect(() => {
@@ -107,7 +107,7 @@ const SupplierAdd = () => {
                         keyboardType="email"
                     />
 
-                    <Button onPress={() => addingProduto()}>
+                    <Button onPress={() => addingFornecedor()}>
                         {loading ? (<ActivityIndicator size="small" color="#FFF" />) 
                         : (<ButtonText>Salvar</ButtonText>)}
                     </Button>

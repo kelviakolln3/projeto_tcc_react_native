@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ADDING_REQUEST, ADDING_SUCCESS, ADDING_FAILURE } from './supplierAddActionTypes';
 import { FETCH_DATA_SUCCESS } from './suppliersLoadActionTypes'
 
-export const addCliente = (body) => async (dispatch, getState) => {
+export const addFornecedor = (body) => async (dispatch, getState) => {
     dispatch({ type: ADDING_REQUEST });
 
     try {

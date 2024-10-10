@@ -1,21 +1,21 @@
 import configureMockStore from 'redux-mock-store';
 import { thunk } from 'redux-thunk';
 import axios from 'axios';
-import { addProduto } from '../../../src/actions/products/productAddAction';
-import { ADDING_REQUEST, ADDING_SUCCESS, ADDING_FAILURE } from '../../../src/actions/products/productAddActionTypes';
-import { FETCH_DATA_SUCCESS } from '../../../src/actions/products/productsLoadActionTypes';
+import { addFornecedor } from '../../../src/actions/suppliers/supplierAddAction';
+import { ADDING_REQUEST, ADDING_SUCCESS, ADDING_FAILURE } from '../../../src/actions/suppliers/supplierAddActionTypes';
+import { FETCH_DATA_SUCCESS } from '../../../src/actions/suppliers/suppliersLoadActionTypes';
 import { faker } from '@faker-js/faker';
 
 const mockStore = configureMockStore([thunk]);
 
 jest.mock('axios');
 
-describe('addProduto actions', () => { //Tempo de montagem 04 min e 48 seg 
+describe('addFornecedor actions', () => { //Tempo de montagem 04 min e 18 seg 
     let store;
 
     beforeEach(() => {
         store = mockStore({
-            products: {
+            suppliers: {
                 list: []
             }
         });
@@ -25,23 +25,22 @@ describe('addProduto actions', () => { //Tempo de montagem 04 min e 48 seg
         jest.clearAllMocks(); 
     });
 
-    it('should dispatch ADDING_REQUEST and ADDING_SUCCESS when adding a product is successful', async () => {
+    it('should dispatch ADDING_REQUEST and ADDING_SUCCESS when adding a supplier is successful', async () => {
         const mockData = 
             {
                 codigo: faker.number.int(),
-                nome: faker.string.alpha(20),
-                codigoBarras: faker.number.int(14).toString(),
-                estoque: faker.number.float(),
-                grupo: faker.string.alpha(10),
-                marca: faker.string.alpha(10),
-                valorVenda: faker.number.float(),
+                atividade: faker.string.alpha(20),
+                empresa: faker.string.alpha(20),
+                contato: faker.phone.number(),
+                endereco: faker.location.streetAddress(),
+                email: faker.internet.email(),
             };
 
         // Simula uma resposta bem-sucedida
         axios.post.mockResolvedValueOnce({ status: 200, data: mockData });
 
-        // Despacha a ação addProduto
-        await store.dispatch(addProduto(mockData));
+        // Despacha a ação addFornecedor
+        await store.dispatch(addFornecedor(mockData));
 
         const actions = store.getActions();
         expect(actions[0]).toEqual({ type: ADDING_REQUEST });
@@ -53,14 +52,14 @@ describe('addProduto actions', () => { //Tempo de montagem 04 min e 48 seg
         expect(actions[2]).toEqual({ type: ADDING_SUCCESS });
     });
 
-    it('should dispatch ADDING_REQUEST and ADDING_FAILURE when adding a product fails', async () => {
+    it('should dispatch ADDING_REQUEST and ADDING_FAILURE when adding a supplier fails', async () => {
         const errorMessage = 'Network error';
 
         // Simula um erro na requisição
         axios.post.mockRejectedValueOnce(new Error(errorMessage));
 
-        // Despacha a ação addProduto
-        await store.dispatch(addProduto());
+        // Despacha a ação addFornecedor
+        await store.dispatch(addFornecedor());
 
         const actions = store.getActions();
         expect(actions[0]).toEqual({ type: ADDING_REQUEST });
@@ -71,8 +70,8 @@ describe('addProduto actions', () => { //Tempo de montagem 04 min e 48 seg
         // Simula uma resposta com status 404
         axios.post.mockResolvedValueOnce({ status: 404 });
 
-        // Despacha a ação addProduto
-        await store.dispatch(addProduto());
+        // Despacha a ação addFornecedor
+        await store.dispatch(addFornecedor());
 
         const actions = store.getActions();
         expect(actions[0]).toEqual({ type: ADDING_REQUEST });
