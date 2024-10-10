@@ -9,7 +9,7 @@ const mockStore = configureMockStore([thunk]);
 
 jest.mock('axios');
 
-describe('fetchData actions', () => { //Tempo de montagem 04 min e 35 seg 
+describe('fetchData actions', () => { //Tempo de montagem 02 min e 34 seg 
   let store;
 
   beforeEach(() => {
