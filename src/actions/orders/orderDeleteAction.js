@@ -13,7 +13,7 @@ export const deletePedido = (idPedido, itemPedidoList) => async (dispatch, getSt
         // Deletar o pedido
         const response = await axios.delete(`http://192.168.0.15:8080/pedido/${idPedido}`);
         if (response.status === 200) {
-            const { list: pedidos } = getState().orders; // Certifique-se de que 'list' é a propriedade correta
+            const { list: pedidos } = getState().orders;
             const updatedPedidos = pedidos.filter(pedido => pedido.idPedido !== idPedido);
             dispatch({ type: FETCH_DATA_SUCCESS, payload: updatedPedidos });
         } else {
