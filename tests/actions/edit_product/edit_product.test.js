@@ -2,7 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import { thunk } from 'redux-thunk';
 import axios from 'axios';
 import { editProduto } from '../../../src/actions/products/productEditAction';
-import { EDIT_REQUEST, EDIT_FAILURE } from '../../../src/actions/products/productEditActionTypes';
+import { EDIT_REQUEST, EDIT_FAILURE, EDIT_SUCCESS } from '../../../src/actions/products/productEditActionTypes';
 import { FETCH_DATA_SUCCESS } from '../../../src/actions/products/productsLoadActionTypes';
 
 const mockStore = configureMockStore([thunk]);
@@ -50,7 +50,7 @@ describe('editProduto actions', () => { //Tempo de montagem 06 min e 42 seg
         });
 
         // Verifica se EDIT_SUCCESS foi disparado
-        expect(actions[2]).toEqual({ type: 'EDIT_SUCCESS' });
+        expect(actions[2]).toEqual({ type: EDIT_SUCCESS });
     });
 
     it('should dispatch EDIT_REQUEST and EDIT_FAILURE when editing a product fails', async () => {

@@ -26,7 +26,7 @@ export const editPedido = (body, idPedido) => async (dispatch, getState) => {
         const data = await response.data;
         const { list: pedidos } = getState().orders
 
-        const updatedPedidos = pedidos.map(pedido => pedido.idPedido === idPedido ? response.data : pedido);
+        const updatedPedidos = pedidos.map(pedido => pedido.idPedido === idPedido ? data : pedido);
         dispatch({ type: FETCH_DATA_SUCCESS, payload: updatedPedidos });
         dispatch({ type: EDIT_SUCCESS });
       } else {

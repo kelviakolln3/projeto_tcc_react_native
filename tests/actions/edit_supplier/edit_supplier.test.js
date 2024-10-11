@@ -2,7 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import { thunk } from 'redux-thunk';
 import axios from 'axios';
 import { editFornecedor } from '../../../src/actions/suppliers/supplierEditAction';
-import { EDIT_REQUEST, EDIT_FAILURE } from '../../../src/actions/suppliers/supplierEditActionTypes';
+import { EDIT_REQUEST, EDIT_SUCCESS, EDIT_FAILURE } from '../../../src/actions/suppliers/supplierEditActionTypes';
 import { FETCH_DATA_SUCCESS } from '../../../src/actions/suppliers/suppliersLoadActionTypes';
 
 const mockStore = configureMockStore([thunk]);
@@ -27,7 +27,7 @@ describe('editFornecedor actions', () => { //Tempo de montagem 03 min e 18 seg
         jest.clearAllMocks(); // Limpa os mocks após cada teste
     });
 
-    it('should dispatch EDIT_REQUEST and FETCH_DATA_SUCCESS when editing a client is successful', async () => {
+    it('should dispatch EDIT_REQUEST and FETCH_DATA_SUCCESS when editing a supplier is successful', async () => {
         const idFornecedorToEdit = 1;
         const updatedFornecedor = { idFornecedor: 1, empresa: 'Apple' };
         const body = { empresa: 'Apple' }; // Dados que você está enviando para editar
@@ -50,10 +50,10 @@ describe('editFornecedor actions', () => { //Tempo de montagem 03 min e 18 seg
         });
 
         // Verifica se EDIT_SUCCESS foi disparado
-        expect(actions[2]).toEqual({ type: 'EDIT_SUCCESS' });
+        expect(actions[2]).toEqual({ type: EDIT_SUCCESS });
     });
 
-    it('should dispatch EDIT_REQUEST and EDIT_FAILURE when editing a client fails', async () => {
+    it('should dispatch EDIT_REQUEST and EDIT_FAILURE when editing a supplier fails', async () => {
         const idFornecedorToEdit = 1;
         const body = { empresa: 'Apple' };
         const errorMessage = 'Network error';
